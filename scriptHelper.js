@@ -17,11 +17,68 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
 }
 
 function validateInput(testInput) {
+	if (testInput.trim().length === 0) {
+		return "Empty";
+	}
+
+	if (Number.isNaN(Number(testInput))) {
+		return "Not a Number";
+	} else {
+		return "Is a Number";
+	}
    
 }
 
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
-   
+	const validationResults = {
+		pilot: validateInput(pilot),
+		copilot: validateInput(copilot),
+		fuelLevel: validateInput(fuelLevel),
+		cargoLevel: validateInput(cargoLevel),
+	}
+	console.log(validationResults);
+
+	if (Object.values(validationResults).includes("Empty")) {
+		return alert("All fields are required");
+	}
+
+	if (
+		validationResults.pilot === "Is a Number" ||
+		validationResults.copilot === "Is a Number" ||
+		validationResults.fuelLevel === "Not a Number" ||
+		validationResults.cargoLevel === "Not a Number"
+	) {
+		return alert("Make sure to enter valid information for each field");
+	}
+
+	// Assume everything is validated at this point
+	fuelLevel = Number(fuelLevel)
+	cargoLevel = Number(cargoLevel)
+
+	list.querySelector('#pilotStatus').textContent = `Pilot ${pilot} is ready`;
+	list.querySelector('#copilotStatus').textContent = `Co-pilot ${copilot} is ready`;
+
+	const MIN_FUEL_LEVEL = 10_000;
+
+	if (fuelLevel < MIN_FUEL_LEVEL) {
+		list.style.visibility = 'visible';
+		list.querySelector('#fuelStatus').textContent = "Not enough fuel for the journey"
+		document.querySelector("#launchStatus").textContent="Shuttle not ready for launch");
+		document.querySelector("#launchStatus").style.color = "red";
+	}
+
+
+
+
+
+
+
+	//const validationResults = [pilot, copilot, fuelLevel, cargoLevel]
+	//.reduce((acc, curr) => {
+		//acc[curr]k
+	//}, {})
+	//.map(input => validateInput(input))
+	
 }
 
 async function myFetch() {
