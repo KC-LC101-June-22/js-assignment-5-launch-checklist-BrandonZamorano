@@ -7,6 +7,21 @@ window.addEventListener("load", function() {
 	const fuelLevelInput = document.querySelector("input[name=fuelLevel]");
 	const cargoMassInput = document.querySelector("input[name=cargoMass]");
 
+	form.addEventListener("submit", function(event) {
+		event.preventDefault();
+
+		if (
+			pilotNameInput.value === "" ||
+			copilotNameInput.value === "" ||
+			fuelLevelInput.value === "" ||
+			cargoMassInput.value === ""
+		) {
+			alert("All fields are required!");
+		}
+
+
+	});
+
 	let listedPlanets;
 	// Set listedPlanetsResponse equal to the value returned by calling myFetch()
 	let listedPlanetsResponse;
