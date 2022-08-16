@@ -73,6 +73,7 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
 	const pilotStatusEl = list.querySelector('#pilotStatus');
 	const copilotStatusEl = list.querySelector('#copilotStatus');
 	const fuelStatusEl = list.querySelector('#fuelStatus');
+	const cargoStatusEl = list.querySelector("#cargoStatus");
 
 	pilotStatusEl.textContent = `Pilot ${pilot} is ready for launch`;
 	copilotStatusEl.textContent = `Co-pilot ${copilot} is ready for launch`;
@@ -92,6 +93,8 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
 
 	if (cargoLevel > MAX_CARGO_MASS) {
 		list.style.visiblity = "visible";
+		cargoStatusEl.textContent = "Cargo mass too heavy for launch";
+
 		return;
 	}
 
