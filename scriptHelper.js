@@ -41,8 +41,6 @@ function validateInput(testInput) {
 }
 
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
-	list.style.visiblity = "hidden";
-
 	const validationResults = {
 		pilot: validateInput(pilot),
 		copilot: validateInput(copilot),
@@ -79,19 +77,21 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
 	pilotStatusEl.textContent = `Pilot ${pilot} is ready for launch`;
 	copilotStatusEl.textContent = `Co-pilot ${copilot} is ready for launch`;
 
+	// update launch status
+	if (fuelLevel < MIN_FUEL_LEVEL || cargoLevel > MAX_CARGO_MASS) {
+		launchStatusEl.textContent = "Shuttle Not Ready for Launch";
+		launchStatusEl.style.color = "rgb(199, 37, 78)";
+	}
+
 
 	if (fuelLevel < MIN_FUEL_LEVEL) {
 		list.style.visibility = 'visible';
 		fuelStatusEl.textContent = "Fuel level too low for launch"
-		launchStatusEl.textContent="Shuttle Not Ready for Launch";
-		launchStatusEl.style.color = "rgb(199, 37, 78)";
 	} 
 
 
 	if (cargoLevel > MAX_CARGO_MASS) {
 		list.style.visiblity = "visible";
-		launchStatusEl.textContent = "Shuttle Not Ready for Launch";
-		launchStatusEl.style.color = "rgb(199, 37, 78)";
 		return;
 	}
 
