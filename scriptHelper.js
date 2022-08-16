@@ -55,6 +55,8 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
 	fuelLevel = Number(fuelLevel)
 	cargoLevel = Number(cargoLevel)
 
+	const launchStatusEl = document.querySelector("#launchStatus");
+
 	list.querySelector('#pilotStatus').textContent = `Pilot ${pilot} is ready`;
 	list.querySelector('#copilotStatus').textContent = `Co-pilot ${copilot} is ready`;
 
@@ -63,9 +65,21 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
 	if (fuelLevel < MIN_FUEL_LEVEL) {
 		list.style.visibility = 'visible';
 		list.querySelector('#fuelStatus').textContent = "Not enough fuel for the journey"
-		document.querySelector("#launchStatus").textContent="Shuttle not ready for launch";
-		document.querySelector("#launchStatus").style.color = "red";
+		launchStatusEl.textContent="Shuttle not ready for launch";
+		launchStatusEl.style.color = "red";
+		return;
 	}
+
+	const MAX_CARGO_MASS = 10_000;
+
+	if (cargoLevel > MAX_CARGO_MASS) {
+		list.style.visiblity = "visible";
+		launchStatusEl.textContent = "Shuttle not ready for launch";
+		return;
+	}
+
+	launchStatus.textContent = "Shuttle is ready for launch";
+	launchStatus.style.color = "green";
 
 
 
