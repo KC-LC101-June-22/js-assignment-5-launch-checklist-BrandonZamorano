@@ -89,7 +89,7 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
 		list.style.visibility = 'visible';
 		fuelStatusEl.textContent = "Fuel level too low for launch"
 	} else {
-		fuelStatusEl.textContent = "Fuel level is high enough for launch"
+		fuelStatusEl.textContent = "Fuel level high enough for launch"
 	}
 
 
@@ -102,7 +102,7 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
 		cargoStatusEl.textContent = "Cargo mass low enough for launch";
 	}
 
-	launchStatusEl.textContent = "Shuttle is ready for launch";
+	launchStatusEl.textContent = "Shuttle is Ready for launch";
 	launchStatusEl.style.color = "green";
 }
 
