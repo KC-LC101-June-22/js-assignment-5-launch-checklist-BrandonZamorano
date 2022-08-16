@@ -102,7 +102,7 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
 		cargoStatusEl.textContent = "Cargo mass low enough for launch";
 	}
 
-	launchStatusEl.textContent = "Shuttle is Ready for launch";
+	launchStatusEl.textContent = "Shuttle is Ready for Launch";
 	launchStatusEl.style.color = "green";
 }
 
