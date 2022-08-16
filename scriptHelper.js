@@ -63,7 +63,7 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
 	if (fuelLevel < MIN_FUEL_LEVEL) {
 		list.style.visibility = 'visible';
 		list.querySelector('#fuelStatus').textContent = "Not enough fuel for the journey"
-		document.querySelector("#launchStatus").textContent="Shuttle not ready for launch");
+		document.querySelector("#launchStatus").textContent="Shuttle not ready for launch";
 		document.querySelector("#launchStatus").style.color = "red";
 	}
 
