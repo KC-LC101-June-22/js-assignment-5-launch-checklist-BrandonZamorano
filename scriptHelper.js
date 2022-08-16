@@ -28,7 +28,7 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
 }
 
 function validateInput(testInput) {
-	if (testInput.trim().length === 0) {
+	if (testInput === "") {
 		return "Empty";
 	}
 
@@ -47,7 +47,6 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
 		fuelLevel: validateInput(fuelLevel),
 		cargoLevel: validateInput(cargoLevel),
 	}
-	console.log(validationResults);
 
 	if (Object.values(validationResults).includes("Empty")) {
 		return alert("All fields are required");
@@ -68,16 +67,16 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
 
 	const launchStatusEl = document.querySelector("#launchStatus");
 
-	list.querySelector('#pilotStatus').textContent = `Pilot ${pilot} is ready`;
-	list.querySelector('#copilotStatus').textContent = `Co-pilot ${copilot} is ready`;
+	list.querySelector('#pilotStatus').textContent = `Pilot ${pilot} is ready for launch`;
+	list.querySelector('#copilotStatus').textContent = `Co-pilot ${copilot} is ready for launch`;
 
 	const MIN_FUEL_LEVEL = 10_000;
 
 	if (fuelLevel < MIN_FUEL_LEVEL) {
 		list.style.visibility = 'visible';
-		list.querySelector('#fuelStatus').textContent = "Not enough fuel for the journey"
-		launchStatusEl.textContent="Shuttle not ready for launch";
-		launchStatusEl.style.color = "red";
+		list.querySelector('#fuelStatus').textContent = "Fuel level too low for launch"
+		launchStatusEl.textContent="Shuttle Not Ready for Launch";
+		launchStatusEl.style.color = "rgb(199, 37, 78)";
 		return;
 	}
 
@@ -85,25 +84,13 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
 
 	if (cargoLevel > MAX_CARGO_MASS) {
 		list.style.visiblity = "visible";
-		launchStatusEl.textContent = "Shuttle not ready for launch";
+		launchStatusEl.textContent = "Shuttle Not Ready for Launch";
+		launchStatusEl.style.color = "rgb(199, 37, 78)";
 		return;
 	}
 
 	launchStatus.textContent = "Shuttle is ready for launch";
 	launchStatus.style.color = "green";
-
-
-
-
-
-
-
-	//const validationResults = [pilot, copilot, fuelLevel, cargoLevel]
-	//.reduce((acc, curr) => {
-		//acc[curr]k
-	//}, {})
-	//.map(input => validateInput(input))
-	
 }
 
 async function myFetch() {
