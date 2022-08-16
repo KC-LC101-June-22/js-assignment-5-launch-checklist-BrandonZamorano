@@ -41,6 +41,8 @@ function validateInput(testInput) {
 }
 
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
+	list.style.visiblity = "hidden";
+
 	const validationResults = {
 		pilot: validateInput(pilot),
 		copilot: validateInput(copilot),
@@ -67,20 +69,24 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
 
 	const launchStatusEl = document.querySelector("#launchStatus");
 
-	list.querySelector('#pilotStatus').textContent = `Pilot ${pilot} is ready for launch`;
-	list.querySelector('#copilotStatus').textContent = `Co-pilot ${copilot} is ready for launch`;
-
 	const MIN_FUEL_LEVEL = 10_000;
+	const MAX_CARGO_MASS = 10_000;
+
+	const pilotStatusEl = list.querySelector('#pilotStatus');
+	const copilotStatusEl = list.querySelector('#copilotStatus');
+	const fuelStatusEl = list.querySelector('#fuelStatus');
+
+	pilotStatusEl.textContent = `Pilot ${pilot} is ready for launch`;
+	copilotStatusEl.textContent = `Co-pilot ${copilot} is ready for launch`;
+
 
 	if (fuelLevel < MIN_FUEL_LEVEL) {
 		list.style.visibility = 'visible';
-		list.querySelector('#fuelStatus').textContent = "Fuel level too low for launch"
+		fuelStatusEl.textContent = "Fuel level too low for launch"
 		launchStatusEl.textContent="Shuttle Not Ready for Launch";
 		launchStatusEl.style.color = "rgb(199, 37, 78)";
-		return;
-	}
+	} 
 
-	const MAX_CARGO_MASS = 10_000;
 
 	if (cargoLevel > MAX_CARGO_MASS) {
 		list.style.visiblity = "visible";
