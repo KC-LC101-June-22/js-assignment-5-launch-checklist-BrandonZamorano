@@ -95,8 +95,8 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
 		return;
 	}
 
-	launchStatus.textContent = "Shuttle is ready for launch";
-	launchStatus.style.color = "green";
+	launchStatusEl.textContent = "Shuttle is ready for launch";
+	launchStatusEl.style.color = "green";
 }
 
 async function myFetch() {
