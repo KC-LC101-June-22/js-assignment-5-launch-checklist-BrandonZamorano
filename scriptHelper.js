@@ -69,6 +69,8 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
 
 	const MIN_FUEL_LEVEL = 10_000;
 	const MAX_CARGO_MASS = 10_000;
+	const COLOR_GREEN = "rgb(65, 159, 106)";
+	const COLOR_RED = "rgb(199, 37, 78)";
 
 	const pilotStatusEl = list.querySelector('#pilotStatus');
 	const copilotStatusEl = list.querySelector('#copilotStatus');
@@ -81,7 +83,7 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
 	// update launch status
 	if (fuelLevel < MIN_FUEL_LEVEL || cargoLevel > MAX_CARGO_MASS) {
 		launchStatusEl.textContent = "Shuttle Not Ready for Launch";
-		launchStatusEl.style.color = "rgb(199, 37, 78)";
+		launchStatusEl.style.color = COLOR_RED;
 	}
 
 
@@ -103,7 +105,7 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
 	}
 
 	launchStatusEl.textContent = "Shuttle is Ready for Launch";
-	launchStatusEl.style.color = "green";
+	launchStatusEl.style.color = COLOR_GREEN;
 }
 
 async function myFetch() {
