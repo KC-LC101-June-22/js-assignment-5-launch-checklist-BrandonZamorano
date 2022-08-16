@@ -88,7 +88,9 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
 	if (fuelLevel < MIN_FUEL_LEVEL) {
 		list.style.visibility = 'visible';
 		fuelStatusEl.textContent = "Fuel level too low for launch"
-	} 
+	} else {
+		fuelStatusEl.textContent = "Fuel level is high enough for launch"
+	}
 
 
 	if (cargoLevel > MAX_CARGO_MASS) {
@@ -96,6 +98,8 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
 		cargoStatusEl.textContent = "Cargo mass too heavy for launch";
 
 		return;
+	} else {
+		cargoStatusEl.textContent = "Cargo mass low enough for launch";
 	}
 
 	launchStatusEl.textContent = "Shuttle is ready for launch";
