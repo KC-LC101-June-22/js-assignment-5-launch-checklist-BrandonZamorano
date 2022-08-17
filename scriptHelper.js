@@ -81,7 +81,6 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
 	copilotStatusEl.textContent = `Co-pilot ${copilot} is ready for launch`;
 
 	// update launch status
-		list.style.visibility = 'hidden';
 	if (fuelLevel < MIN_FUEL_LEVEL || cargoLevel > MAX_CARGO_MASS) {
 		list.style.visibility = 'visible';
 		launchStatusEl.textContent = "Shuttle Not Ready for Launch";
