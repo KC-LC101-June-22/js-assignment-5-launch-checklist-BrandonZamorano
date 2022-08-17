@@ -72,23 +72,27 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
 	const COLOR_GREEN = "rgb(65, 159, 106)";
 	const COLOR_RED = "rgb(199, 37, 78)";
 
-	const pilotStatusEl = list.querySelector('#pilotStatus');
-	const copilotStatusEl = list.querySelector('#copilotStatus');
-	const fuelStatusEl = list.querySelector('#fuelStatus');
-	const cargoStatusEl = list.querySelector("#cargoStatus");
+	const pilotStatusEl = document.querySelector('#pilotStatus');
+	const copilotStatusEl = document.querySelector('#copilotStatus');
+	const fuelStatusEl = document.querySelector('#fuelStatus');
+	const cargoStatusEl = document.querySelector("#cargoStatus");
 
 	pilotStatusEl.textContent = `Pilot ${pilot} is ready for launch`;
 	copilotStatusEl.textContent = `Co-pilot ${copilot} is ready for launch`;
 
 	// update launch status
 	if (fuelLevel < MIN_FUEL_LEVEL || cargoLevel > MAX_CARGO_MASS) {
+		list.style.visibility = 'visible';
 		launchStatusEl.textContent = "Shuttle Not Ready for Launch";
 		launchStatusEl.style.color = COLOR_RED;
+	} else {
+		list.style.visiblity = "visible";
+		launchStatusEl.textContent = "Shuttle is Ready for Launch";
+		launchStatusEl.style.color = COLOR_GREEN;
 	}
 
 
 	if (fuelLevel < MIN_FUEL_LEVEL) {
-		list.style.visibility = 'visible';
 		fuelStatusEl.textContent = "Fuel level too low for launch"
 	} else {
 		fuelStatusEl.textContent = "Fuel level high enough for launch"
@@ -96,16 +100,11 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
 
 
 	if (cargoLevel > MAX_CARGO_MASS) {
-		list.style.visiblity = "visible";
 		cargoStatusEl.textContent = "Cargo mass too heavy for launch";
-
-		return;
 	} else {
 		cargoStatusEl.textContent = "Cargo mass low enough for launch";
 	}
 
-	launchStatusEl.textContent = "Shuttle is Ready for Launch";
-	launchStatusEl.style.color = COLOR_GREEN;
 }
 
 async function myFetch() {
