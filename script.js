@@ -12,9 +12,6 @@ window.addEventListener("load", function() {
 		event.preventDefault();
 
 		formSubmission(document, faultyItemsEl, pilotNameInput.value, copilotNameInput.value, fuelLevelInput.value, cargoMassInput.value);
-
-
-
 	});
 
 	let listedPlanets;
