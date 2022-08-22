@@ -27,29 +27,35 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
 	`;
 }
 
+const validationResult = {
+  EMPTY: "Empty",
+  NAN: "Not a Number",
+  NUM: "Is a Number"
+}
+
 function validateInput(testInput) {
   if (testInput === "") {
-    return "Empty";
+    return validationResult.EMPTY
   }
 
   if (Number.isNaN(Number(testInput))) {
-    return "Not a Number";
+    return validationResult.NAN
   } else {
-    return "Is a Number";
+    return validationResult.NUM
   }
 
 }
 
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
   const validationResults = [
-    { expected: "Not a Number", result: validateInput(pilot) },
-    { expected: "Not a Number", result: validateInput(copilot) },
-    { expected: "Is a Number", result: validateInput(fuelLevel) },
-    { expected: "Is a Number", result: validateInput(cargoLevel) },
+    { expected: validationResult.NAN, result: validateInput(pilot) },
+    { expected: validationResult.NAN, result: validateInput(copilot) },
+    { expected: validationResult.NUM, result: validateInput(fuelLevel) },
+    { expected: validationResult.NUM, result: validateInput(cargoLevel) },
   ]
 
   // Alert if any result is "Empty"
-  if (validationResults.find(({ result }) => result === "Empty")) {
+  if (validationResults.find(({ result }) => result === validationResult.EMPTY)) {
     return alert("All fields are required")
   }
 
