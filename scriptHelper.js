@@ -41,24 +41,21 @@ function validateInput(testInput) {
 }
 
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
-  const validationResults = {
-    pilot: validateInput(pilot),
-    copilot: validateInput(copilot),
-    fuelLevel: validateInput(fuelLevel),
-    cargoLevel: validateInput(cargoLevel),
+  const validationResults = [
+    { expected: "Not a Number", result: validateInput(pilot) },
+    { expected: "Not a Number", result: validateInput(copilot) },
+    { expected: "Is a Number", result: validateInput(fuelLevel) },
+    { expected: "Is a Number", result: validateInput(cargoLevel) },
+  ]
+
+  // Alert if any result is "Empty"
+  if (validationResults.find(({ result }) => result === "Empty")) {
+    return alert("All fields are required")
   }
 
-  if (Object.values(validationResults).includes("Empty")) {
-    return alert("All fields are required");
-  }
-
-  if (
-    validationResults.pilot === "Is a Number" ||
-    validationResults.copilot === "Is a Number" ||
-    validationResults.fuelLevel === "Not a Number" ||
-    validationResults.cargoLevel === "Not a Number"
-  ) {
-    return alert("Make sure to enter valid information for each field");
+  // Alert if not every result is equal to expected
+  if (!validationResults.every(({ expected, result }) => expected === result)) {
+    return alert("Make sure to enter valid information for each field")
   }
 
   // Assume everything is validated at this point
